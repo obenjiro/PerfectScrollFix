@@ -15,6 +15,14 @@ PerfectScrollFix have two main diffrences:
 - 	You don't need to do a lot. Just mark scrollable elements with `.scrollable` class and call `PerfectScrollFix.enable()`.
 - 	It works perfectly stable :)
 
+# Example
+
+You can test this script on iPad:
+http://jsbin.com/usomob/3
+
+Source code of Example
+http://jsbin.com/usomob/3/edit
+
 # How to use
 
 Setup a scrollable section by adding 'scrollable' class name (make sure that 'scrollable' element have only one element inside, a wrapper so to speek):

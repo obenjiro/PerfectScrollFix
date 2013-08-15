@@ -12,8 +12,8 @@ In a native app, you'd expect the content to rubber band but in Safari the whole
 
 PerfectScrollFix have two main diffrences:
 
-- 	It works like magic without a lot of work just mark scrollable elements with '.scrollable' class and call PerfectScrollFix.enable() and you done.
-- 	It works prefectly stable.
+- 	You don't need to do a lot. Just mark scrollable elements with `.scrollable` class and call `PerfectScrollFix.enable()`.
+- 	It works perfectly stable :)
 
 # How to use
 

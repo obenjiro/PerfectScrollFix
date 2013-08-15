@@ -1,2 +1,4 @@
 PerfectScrollFix
 ================
+
+Example of usage

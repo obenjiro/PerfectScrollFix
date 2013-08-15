@@ -33,9 +33,9 @@ win.PerfectScrollFix = {
         document.addEventListener('touchend', _psf_TouchEnd, true);
     },
     disable: function(){
-        document.removeEventListener('touchmove', _psf_TouchMove);
-        document.removeEventListener('touchstart', _psf_TouchStart);
-        document.removeEventListener('touchend', _psf_TouchEnd);
+        document.removeEventListener('touchmove', _psf_TouchMove, true);
+        document.removeEventListener('touchstart', _psf_TouchStart, true);
+        document.removeEventListener('touchend', _psf_TouchEnd, true);
     }
 }
 

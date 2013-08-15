@@ -89,7 +89,7 @@ function _lookUpInclusive(element, className, depth) {
         return element;
     } else {
         if (element.parentElement) {
-            return lookUpInclusive(element.parentElement, className, depth-1);
+            return _lookUpInclusive(element.parentElement, className, depth-1);
         } else {
             return null;
         }

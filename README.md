@@ -10,7 +10,7 @@ The newly support `overflow:scroll` is a great addition and works well except un
 
 In a native app, you'd expect the content to rubber band but in Safari the whole page is scrolled instead. Under occasions where you've deliberately hidden the browser chrome, this interaction can bring it back into view.
 
-PerfectScrollFix have two main diffrences:
+**PerfectScrollFix have two main diffrences:**
 
 - 	You don't need to do a lot. Just mark scrollable elements with `.scrollable` class and call `PerfectScrollFix.enable()`.
 - 	It works perfectly stable :)

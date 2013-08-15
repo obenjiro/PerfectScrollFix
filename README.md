@@ -1,7 +1,7 @@
 PerfectScrollFix
 ================
 
-PerfectScrollFix is a fork of ScrollFix (https://github.com/joelambert/ScrollFix) small script that partially works around the most common issue with using iOS5's overflow: scroll for fullscreen web apps.
+PerfectScrollFix is similar to ScrollFix (https://github.com/joelambert/ScrollFix) small script that partially works around the most common issue with using iOS5's overflow: scroll for fullscreen web apps.
 
 The newly support `overflow:scroll` is a great addition and works well except under the following conditions:
 

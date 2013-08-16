@@ -1,6 +1,8 @@
 PerfectScrollFix
 ================
 
+Demo: http://jsbin.com/usomob/4
+
 PerfectScrollFix is similar to ScrollFix (https://github.com/joelambert/ScrollFix) small script that partially works around the most common issue with using iOS5's overflow: scroll for fullscreen web apps.
 
 The newly support `overflow:scroll` is a great addition and works well except under the following conditions:
@@ -18,10 +20,10 @@ In a native app, you'd expect the content to rubber band but in Safari the whole
 # Example
 
 You can test this script on iPad:
-http://jsbin.com/usomob/3
+http://jsbin.com/usomob/4
 
 Source code of Example
-http://jsbin.com/usomob/3/edit
+http://jsbin.com/usomob/4/edit
 
 # How to use
 

@@ -23,60 +23,59 @@
 (function (win) {
 
 //flag that allow to handle some of prefectScrollFix problems
-var _preventMove = false;
+var _preventMove = false,
+    //constant
+    DEFAULT_DEPTH = 100;
 
 //singlton PerfectScrollFix object
 win.PerfectScrollFix = {
-    enable: function(){
-        document.addEventListener('touchmove', _psf_TouchMove, true);
-        document.addEventListener('touchstart', _psf_TouchStart, true);
-        document.addEventListener('touchend', _psf_TouchEnd, true);
+    enable: function() {
+        document.addEventListener('touchmove', _psfTouchMove, true);
+        document.addEventListener('touchstart', _psfTouchStart, true);
+        document.addEventListener('touchend', _psfTouchEnd, true);
     },
-    disable: function(){
-        document.removeEventListener('touchmove', _psf_TouchMove, true);
-        document.removeEventListener('touchstart', _psf_TouchStart, true);
-        document.removeEventListener('touchend', _psf_TouchEnd, true);
+    disable: function() {
+        document.removeEventListener('touchmove', _psfTouchMove, true);
+        document.removeEventListener('touchstart', _psfTouchStart, true);
+        document.removeEventListener('touchend', _psfTouchEnd, true);
     }
-}
+};
 
-function _psf_TouchMove(e){
-    if (e.target.querySelector('.scrollable') || _preventMove) {
+function _psfTouchMove(e) {
+    var scrollableParent = _lookUpInclusive(e.target, 'scrollable', DEFAULT_DEPTH);
+    if (scrollableParent == null || _preventMove) {
         //preventing scrolling
+        console.log('preventing scrolling');
         e.preventDefault();
     }
 }
 
-function _psf_TouchStart(e){
+function _psfTouchStart(e) {
     //if we clicked on element that have scrollable parent
-    if (!e.target.querySelector('.scrollable')) {
-        //looking for element with class 'scrollable'
-        var targetElement = _lookUpInclusive(e.target, 'scrollable', 1000);
-        if (targetElement) {
-
-            //if we allready on top - move scrollTop a little lower to prevent overscroll
-            if (targetElement.scrollTop <= 0) {
-                targetElement.scrollTop = 1;    
-            }
-            //if we allready on bottm - move scrollTop a little higher to prevent overscroll
-            if (targetElement.scrollTop + targetElement.offsetHeight >= targetElement.scrollHeight) {
-                targetElement.scrollTop = targetElement.scrollHeight - targetElement.offsetHeight - 1;
-            }
-            //if content height of scrollable div is lower then div it self
-            //we need to stop scrolling
-            if (targetElement.scrollHeight === targetElement.offsetHeight) {
-                _preventMove = true;
-            }
-            //if user trying to scroll scrollable div
-            //if this happens - we need to stop that
-            if (e.target == targetElement) {
-                _preventMove = true;
-            }
-
+    var targetElement = _lookUpInclusive(e.target, 'scrollable', DEFAULT_DEPTH);
+    if (targetElement != null) {
+        //if we allready on top - move scrollTop a little lower to prevent overscroll
+        if (targetElement.scrollTop <= 0) {
+            targetElement.scrollTop = 1;
+        }
+        //if we allready on bottm - move scrollTop a little higher to prevent overscroll
+        if (targetElement.scrollTop + targetElement.offsetHeight >= targetElement.scrollHeight) {
+            targetElement.scrollTop = targetElement.scrollHeight - targetElement.offsetHeight - 1;
+        }
+        //if content height of scrollable div is lower then div it self
+        //we need to stop scrolling
+        if (Math.abs(targetElement.scrollHeight - targetElement.offsetHeight) < 4) {
+            _preventMove = true;
+        }
+        //if user trying to scroll '.scrollable' div
+        //we need to stop that action
+        if (e.target === targetElement) {
+            _preventMove = true;
         }
     }
 }
 
-function _psf_TouchEnd(e){
+function _psfTouchEnd() {
     //setting flag back to false
     _preventMove = false;
 }
@@ -89,7 +88,7 @@ function _lookUpInclusive(element, className, depth) {
         return element;
     } else {
         if (element.parentElement) {
-            return _lookUpInclusive(element.parentElement, className, depth-1);
+            return _lookUpInclusive(element.parentElement, className, depth - 1);
         } else {
             return null;
         }
